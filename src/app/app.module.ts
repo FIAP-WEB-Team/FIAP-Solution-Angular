@@ -16,12 +16,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'; 
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { CheckoutComponent } from './checkout/checkout.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     PassengerInputComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: PassengerInputComponent }
+      { path: 'passenger', component: PassengerInputComponent},
+      {path: '', component: CheckoutComponent}
     ]),
     MatDatepickerModule,
     MatInputModule,

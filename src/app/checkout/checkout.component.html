@@ -1,0 +1,9 @@
+<div class="success-message">
+    <h2 *ngIf="passengerInfo; else noPassanger">
+        Passagem de {{passengerInfo.firstName}} comprada com sucesso
+    </h2>
+    <ng-template #noPassanger>
+        <h2>Erro em criar passagem: passageiro não disponível</h2>
+    </ng-template>
+    
+</div>

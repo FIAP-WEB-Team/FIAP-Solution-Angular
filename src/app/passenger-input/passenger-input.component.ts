@@ -1,7 +1,9 @@
 import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PassengerData } from '../data/PassengerData';
+import { PassengerInfoService } from '../passenger-info.service';
 
 @Component({
   selector: 'app-passenger-input',
@@ -26,7 +28,7 @@ export class PassengerInputComponent {
     Price: 1078.9
   }]
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private passengerInfoService: PassengerInfoService, private router: Router) { }
 
   validateForm(passenger: PassengerData) {
     return passenger.birthDate !== '' && passenger.firstName !== '' && passenger.lastName !== '' && passenger.gender !== ''
@@ -40,8 +42,9 @@ export class PassengerInputComponent {
     else {
       let birthDate = new Date(passenger.birthDate)
       passenger.birthDate = formatDate(birthDate, 'dd/MM/yyyy', 'en-US')
-      window.alert(`Redirecting to the next page with birth date: ${passenger.birthDate}`)
-      
+      this.passengerInfoService.setPassengerData(passenger)
+
+      this.router.navigate(['/checkout'])
     }
   }
 }
