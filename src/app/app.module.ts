@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PassengerInputComponent } from './passenger-input/passenger-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -16,12 +14,21 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { CheckoutComponent } from './checkout/checkout.component'; 
+
+import { HeaderComponent } from './views/header/header.component';
+import { FollowlineComponent } from './views/followline/followline.component';
+import { Screen1Component } from './views/screen1/screen1.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PassengerInputComponent } from './passenger-input/passenger-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FollowlineComponent,
+    Screen1Component,
     PassengerInputComponent,
     CheckoutComponent,
   ],
@@ -30,10 +37,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: 'passenger', component: PassengerInputComponent},
-      {path: '', component: CheckoutComponent}
-    ]),
+    FormsModule,
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
@@ -42,7 +46,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     MatSlideToggleModule,
     MatButtonModule,
     MatIconModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }

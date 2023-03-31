@@ -1,0 +1,58 @@
+<h1 style="margin-left: 5%; margin-top: 1% ;">Encontre os melhores voos com as melhores ofertas</h1>
+<form>
+    <div class="box-value">
+        <h4 class="title-entry">TRECHO</h4>
+        <mat-select [(ngModel)]="modoSelecionado" name="modoSelecionado" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo of modosVoo " [value]="modoVoo">
+                {{modoVoo}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="flighticon">flight</i></button>
+    </div>
+    <div class="box-value">
+        <h4 class="title-entry">SAINDO DE</h4>
+        <mat-select [(ngModel)]="modoSelecionado2" name="modoSelecionado2" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo2 of modosVoo" [value]="modoVoo2">
+                {{modoVoo2}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="flighticon">flight_takeoff</i></button>
+    </div>
+    <div class="box-value">
+        <h4 class="title-entry">INDO PARA</h4>
+        <mat-select [(ngModel)]="modoSelecionado3" name="modoSelecionado3" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo3 of modosVoo" [value]="modoVoo3">
+                {{modoVoo3}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="iconInvert">flight_land</i></button>
+    </div>
+    <div class="box-value">
+        <h4 class="title-entry">DATA DE IDA</h4>
+        <mat-select [(ngModel)]="modoSelecionado4" name="modoSelecionado4" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo4 of modosVoo" [value]="modoVoo4">
+                {{modoVoo4}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="flighticon">event</i></button>
+    </div>
+    <div class="box-value">
+        <h4 class="title-entry">DATA DE VOLTA</h4>
+        <mat-select [(ngModel)]="modoSelecionado5" name="modoSelecionado5" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo5 of modosVoo" [value]="modoVoo5">
+                {{modoVoo5}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="flighticon">event</i></button>
+    </div>
+    <div class="box-value">
+        <h4 class="title-entry">PASSAGEIROS</h4>
+        <mat-select [(ngModel)]="modoSelecionado6" name="modoSelecionado6" [ngClass]="{'combobox-select': true}">
+            <mat-option *ngFor="let modoVoo6 of modosVoo" [value]="modoVoo6">
+                {{modoVoo6}}
+            </mat-option>
+        </mat-select>
+        <button class="travel-button"><i class="material-icons" id="flighticon">person</i></button>
+    </div>
+</form>
+<button class="next-button">Avançar</button>
