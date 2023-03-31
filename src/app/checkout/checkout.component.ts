@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PassengerInfoService } from '../passenger-info.service';
+import { LoginService } from '../services/login.service';
+import { PassengerService } from '../services/passenger.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,14 +12,16 @@ export class CheckoutComponent {
   loadingCheckout = true
   checkoutSuccess = false
 
-  passengerInfo = this.passengerInfoService.passengerInfo
+  passengerInfo = this.passengerService.passenger
 
-  constructor(private passengerInfoService: PassengerInfoService, private router: Router) { }
+  constructor(private passengerService: PassengerService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
-    // if (this.passengerInfo === undefined)
-      // this.router.navigate(['/'])
-    // else
-    //   console.log(`Saving passenger info to firebase: ${this.passengerInfo.passengerID}`)
+    if (this.loginService.token !== '')
+      this.router.navigate(['/'])
+    else {
+      this.loginService.loginUser("abana", "rabana")
+      // console.log(`Saving passenger info to firebase: ${this.passengerInfo.passengerID}`)
+    }
   }
 }

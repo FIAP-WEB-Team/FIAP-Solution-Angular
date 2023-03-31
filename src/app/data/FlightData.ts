@@ -1,18 +1,18 @@
 export class FlightData {
-    arrival: string;
-    arrivalDate: string;
+    Arrival: string;
+    ArrivalDate: string;
     departure: string;
-    departureDate: string;
-    price: number;
-    flightNumber: number;
+    DepartureDate: string;
+    Price: number;
+    FlightNumber: number;
 
     constructor(arrival: string, arrivalDate: string, departure: string, departureDate: string,
         price: number, flightNumber: number) {
-        this.arrival = arrival
-        this.arrivalDate = arrivalDate
+        this.Arrival = arrival
+        this.ArrivalDate = arrivalDate
         this.departure = departure
-        this.departureDate = departureDate
-        this.price = price
-        this.flightNumber = flightNumber
+        this.DepartureDate = departureDate
+        this.Price = price
+        this.FlightNumber = flightNumber
     }
 }
