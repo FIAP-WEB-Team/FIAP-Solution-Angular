@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-
+import { ActivatedRoute,Router } from '@angular/router';
 
 
 
@@ -20,4 +20,16 @@ export class Screen1Component {
   modoSelecionado4: string = '';
   modoSelecionado5: string = '';
   modoSelecionado6: string = '';
+
+  mostrarNovoComponente = true;
+  meusDados = [this.modoSelecionado, this.modoSelecionado2, this.modoSelecionado3,this.modoSelecionado4,this.modoSelecionado5,this.modoSelecionado6];
+
+constructor(
+  public router:Router
+){}
+
+  avancar()
+  {
+   this.router.navigate(['/app-select-price-screen'])
+  }
 }

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select'
@@ -17,12 +16,13 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-
 import { HeaderComponent } from './views/header/header.component';
 import { FollowlineComponent } from './views/followline/followline.component';
 import { Screen1Component } from './views/screen1/screen1.component';
+import { SelectPriceScreenComponent } from './views/select-price-screen/select-price-screen.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PassengerInputComponent } from './passenger-input/passenger-input.component';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +30,12 @@ import { PassengerInputComponent } from './passenger-input/passenger-input.compo
     HeaderComponent,
     FollowlineComponent,
     Screen1Component,
+
+    SelectPriceScreenComponent,
+
     PassengerInputComponent,
     CheckoutComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,7 @@ import { PassengerInputComponent } from './passenger-input/passenger-input.compo
     MatIconModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
