@@ -23,7 +23,7 @@ export class PassengerInfoService {
   }
   
   getTicketInfo() {
-    return new TicketData(this.passengerInfo.passengerID, this.filghtInfo.flightNumber)
+    return new TicketData(this.passengerInfo.passengerID, this.filghtInfo.FlightNumber)
   }
   setbuySearch(buySearch:BuySearch)
   {
