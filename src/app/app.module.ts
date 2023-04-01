@@ -20,8 +20,8 @@ import { HeaderComponent } from './views/header/header.component';
 import { FollowlineComponent } from './views/followline/followline.component';
 import { Screen1Component } from './views/screen1/screen1.component';
 import { SelectPriceScreenComponent } from './views/select-price-screen/select-price-screen.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { PassengerInputComponent } from './passenger-input/passenger-input.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
+import { PassengerInputComponent } from './views/passenger-input/passenger-input.component';
 
 
 @NgModule({

@@ -2,9 +2,9 @@ import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PassengerData } from '../data/PassengerData';
-import { PassengerService } from '../services/passenger.service';
-import { LoginService } from '../services/login.service';
+import { PassengerData } from '../../data/PassengerData';
+import { PassengerService } from '../../services/passenger.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-passenger-input',

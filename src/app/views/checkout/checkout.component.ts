@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { PassengerService } from '../services/passenger.service';
+import { LoginService } from '../../services/login.service';
+import { PassengerService } from '../../services/passenger.service';
 
 @Component({
   selector: 'app-checkout',
