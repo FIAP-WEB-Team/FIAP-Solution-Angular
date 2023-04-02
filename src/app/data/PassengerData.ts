@@ -14,4 +14,4 @@ export class PassengerData {
         this.gender = gender
     }
 }
-export const DUMMY_PASSANGER = new PassengerData("Giba", "Dos Santos", "12/10/1994", "Brasileiro", "Masculino")
+export const DUMMY_PASSANGER = new PassengerData("Giba", "Dos Santos", "10/10/1994", "Brasileiro", "Masculino")

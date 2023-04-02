@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio'
+
 import { HeaderComponent } from './views/header/header.component';
 import { FollowlineComponent } from './views/followline/followline.component';
 import { Screen1Component } from './views/screen1/screen1.component';
@@ -54,7 +56,7 @@ import { PassengerInputComponent } from './views/passenger-input/passenger-input
     MatIconModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-
+    MatRadioModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }

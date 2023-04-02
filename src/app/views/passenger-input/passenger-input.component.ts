@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PassengerData } from '../../data/PassengerData';
+import { DUMMY_PASSANGER, PassengerData } from '../../data/PassengerData';
 import { PassengerService } from '../../services/passenger.service';
 import { LoginService } from '../../services/login.service';
 
@@ -14,37 +14,56 @@ import { LoginService } from '../../services/login.service';
 export class PassengerInputComponent {
   startDate = new Date(2010, 1, 1)
   checkoutForm = this.formBuilder.group({
+    useLoggedUserData: 'true',
     firstName: '',
     lastName: '',
-    birthDate: '',
+    birthDate: new Date(''),
     nationality: '',
     gender: ''
   })
-  flightInfo = [{
-    Departure: 'Maceió',
-    DepartureDate: new Date(2023, 4, 12, 15, 30),
-    Arrival: 'Curitiba',
-    ArrivalDate: new Date(2023, 4, 12, 18, 30),
-    FlightNumber: 128079,
-    Price: 1078.9
-  }]
 
   constructor(private formBuilder: FormBuilder, private passengerService: PassengerService, private loginService: LoginService,
-    private router: Router) { }
+    private router: Router) {
+    this.checkUseLoggedUserData(this.checkoutForm.value.useLoggedUserData === "true")
+    this.checkoutForm.get("useLoggedUserData")!.valueChanges.subscribe(useLoggedUserData => {
+      if (useLoggedUserData !== this.checkoutForm.value.useLoggedUserData)
+        this.checkUseLoggedUserData(useLoggedUserData === "true")
+    })
+  }
 
-  validateForm(passenger: PassengerData) {
-    return passenger.birthDate !== '' && passenger.firstName !== '' && passenger.lastName !== '' && passenger.gender !== ''
+  validateForm() {
+    let temp = this.checkoutForm.value
+    return !isNaN(temp.birthDate?.getTime()!) && temp.firstName !== '' && temp.lastName !== '' && temp.gender !== ''
+  }
+
+  fromPassengerToForm(passenger: PassengerData) {
+    this.checkoutForm.patchValue(
+      {
+        firstName: passenger.firstName,
+        lastName: passenger.lastName,
+        gender: passenger.gender,
+        nationality: passenger.nationality,
+        birthDate: new Date(passenger.birthDate),
+      }
+    )
+  }
+
+  checkUseLoggedUserData(isLoggedUser: boolean) {
+    if (isLoggedUser) {
+      this.fromPassengerToForm(DUMMY_PASSANGER)
+    } else {
+      this.fromPassengerToForm(new PassengerData("", "", "", "", ""))
+    }
   }
 
   onSubmit() {
-    let passenger = new PassengerData(this.checkoutForm.value.firstName!, this.checkoutForm.value.lastName!, this.checkoutForm.value.birthDate!,
-      this.checkoutForm.value.nationality!, this.checkoutForm.value.gender!)
-    if (!this.validateForm(passenger))
+    if (!this.validateForm())
       window.alert(`Há campos inválidos`)
     else {
-      let birthDate = new Date(passenger.birthDate)
-      passenger.birthDate = formatDate(birthDate, 'dd/MM/yyyy', 'en-US')
-      this.passengerService.createPassenger(this.loginService.token, passenger)
+      let birthDate = formatDate(this.checkoutForm.value.birthDate!, 'dd/MM/yyyy', 'en-US')
+      let passenger = new PassengerData(this.checkoutForm.value.firstName!, this.checkoutForm.value.lastName!, birthDate,
+        this.checkoutForm.value.nationality!, this.checkoutForm.value.gender!)
+      console.log(passenger)
 
       this.router.navigate(['/checkout'])
     }

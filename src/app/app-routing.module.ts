@@ -11,8 +11,7 @@ import { PassengerInputComponent } from './views/passenger-input/passenger-input
 const routes: Routes = [
   { path: 'screen1', component: Screen1Component },
   { path: '', redirectTo: 'screen1', pathMatch: 'full' },
-
-  {path:'app-select-price-screen', component: SelectPriceScreenComponent},
+  { path: 'app-select-price-screen', component: SelectPriceScreenComponent },
   { path: 'passenger', component: PassengerInputComponent },
   { path: 'checkout', component: CheckoutComponent }
 
