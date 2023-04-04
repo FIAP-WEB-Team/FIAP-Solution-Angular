@@ -1,7 +1,7 @@
 export class FlightData {
     Arrival: string;
     ArrivalDate: string;
-    departure: string;
+    Departure: string;
     DepartureDate: string;
     Price: number;
     FlightNumber: number;
@@ -10,7 +10,7 @@ export class FlightData {
         price: number, flightNumber: number) {
         this.Arrival = arrival
         this.ArrivalDate = arrivalDate
-        this.departure = departure
+        this.Departure = departure
         this.DepartureDate = departureDate
         this.Price = price
         this.FlightNumber = flightNumber

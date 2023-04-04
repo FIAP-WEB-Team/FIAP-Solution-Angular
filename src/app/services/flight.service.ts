@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './base-url';
 import { FlightData } from '../data/FlightData';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,18 +10,17 @@ import { FlightData } from '../data/FlightData';
 export class FlightService {
 
     private apiUrl = BASE_URL + 'flights';
-    flights!: [FlightData]
+    flights!: any
 
     constructor(private http: HttpClient) { }
 
-    getFlights(token: string) {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-        return this.http.get<[FlightData]>(this.apiUrl, { headers }).subscribe({
-            next: response => {
-                this.flights = response
-            }, error: error => {
-                console.log(error)
-            }
-        })
+    async getFlights(token: string) {
+        const headers = new HttpHeaders().set('Authorization', 'Bearer '+token).set('Content-Type', 'application/json');
+       const r = (await firstValueFrom<[FlightData]>( this.http.get<[FlightData]>(this.apiUrl, { headers })))
+       this.flights=r
+    
+      
+   
+        
     }
 }
