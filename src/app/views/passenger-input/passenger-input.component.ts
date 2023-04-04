@@ -63,7 +63,7 @@ export class PassengerInputComponent {
       let birthDate = formatDate(this.checkoutForm.value.birthDate!, 'dd/MM/yyyy', 'en-US')
       let passenger = new PassengerData(this.checkoutForm.value.firstName!, this.checkoutForm.value.lastName!, birthDate,
         this.checkoutForm.value.nationality!, this.checkoutForm.value.gender!)
-      console.log(passenger)
+      this.passengerService.setPassenger(passenger)
 
       this.router.navigate(['/checkout'])
     }

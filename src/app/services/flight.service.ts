@@ -10,17 +10,16 @@ export class FlightService {
 
     private apiUrl = BASE_URL + 'flights';
     flights!: [FlightData]
+    selectedFlight!: FlightData
 
     constructor(private http: HttpClient) { }
 
+    setSelectedFlight(flightData: FlightData){
+        this.selectedFlight = flightData
+    }
+
     getFlights(token: string) {
         const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-        return this.http.get<[FlightData]>(this.apiUrl, { headers }).subscribe({
-            next: response => {
-                this.flights = response
-            }, error: error => {
-                console.log(error)
-            }
-        })
+        return this.http.get<[FlightData]>(this.apiUrl, { headers })
     }
 }

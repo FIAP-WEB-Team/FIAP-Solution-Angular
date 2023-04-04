@@ -4,7 +4,7 @@ export class PassengerData {
     birthDate: string;
     nationality: string;
     gender: string;
-    passengerID!: string
+    PassengerID!: string
 
     constructor(firstName: string, lastName: string, birthDate: string, nationality: string, gender: string) {
         this.firstName = firstName

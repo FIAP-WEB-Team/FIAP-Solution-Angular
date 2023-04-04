@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './base-url';
 import { TicketData } from '../data/TicketData';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,17 +13,12 @@ export class TicketService {
 
     constructor(private http: HttpClient) { }
 
-    createTicket(token: string, ticket: TicketData) {
+    async createTicket(token: string, ticket: TicketData) {
         const body = {
             "flightID": ticket.flightID,
             "passengerID": ticket.passengerID
         }
         const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token).set('Content-Type', 'application/json');
-        return this.http.post(this.apiUrl, body, { headers }).subscribe({
-            next: response => {
-                console.log(response)
-            },
-            error: error => console.log(error)
-        });
+        return firstValueFrom(this.http.post(this.apiUrl, body, { headers }));
     }
 }
