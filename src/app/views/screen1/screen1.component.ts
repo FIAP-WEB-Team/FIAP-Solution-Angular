@@ -1,7 +1,11 @@
 
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { FlightData } from 'src/app/data/FlightData';
 
+import { FlightService } from 'src/app/services/flight.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -9,27 +13,61 @@ import { ActivatedRoute,Router } from '@angular/router';
   templateUrl: './screen1.component.html',
   styleUrls: ['./screen1.component.css']
 })
-
-
-
 export class Screen1Component {
-  modosVoo = ['Ida e Volta', 'Somente Ida', 'Somente Volta'];
-  modoSelecionado: string = '';
-  modoSelecionado2: string = '';
-  modoSelecionado3: string = '';
-  modoSelecionado4: string = '';
-  modoSelecionado5: string = '';
-  modoSelecionado6: string = '';
+  flightType = ['Ida e Volta', 'Somente Ida/Volta'];
+  departureList: String[] = [];
+  arriveList: String[] = [];
+  departureDateList: String[] = [];
+  arriveDateList: string[] = [];
+  passengersNumber = ['1', '2', '3', '4', '5'];
 
-  mostrarNovoComponente = true;
-  meusDados = [this.modoSelecionado, this.modoSelecionado2, this.modoSelecionado3,this.modoSelecionado4,this.modoSelecionado5,this.modoSelecionado6];
+  isExpandedFlightType: number = 0;
 
-constructor(
-  public router:Router
-){}
+  selectedFlightType: string = '';
+  selectedDeparture: string = '';
+  selectedArrival: string = '';
+  selectedDepartureDate: string = '';
+  selectedArrivalDate: string = '';
+  selectedPassengersNumber: string = '';
 
-  avancar()
-  {
-   this.router.navigate(['/app-select-price-screen'])
+
+  constructor(
+    public router: Router,
+    private FlightService: FlightService,
+    private LoginService: LoginService,
+  ) { }
+
+  validate() {
+    // return this.selectedArrival !== ' ' && this.selectedArrivalDate !== ' ' && this.selectedDeparture !== ' ' && this.selectedDepartureDate != '' &&
+    //   this.selectedFlightType != '' && this.selectedPassengersNumber != ''
+    return true
   }
+
+  submit() {
+    if (this.validate()) {
+      this.FlightService.selectedFlight = new FlightData(
+        this.selectedArrival, this.selectedArrivalDate, this.selectedDeparture, this.selectedDepartureDate, 0.0, 0)
+      this.router.navigate(['/flights'])
+    }
+    else {
+      alert("Insira todas as informações requeridas.")
+    }
+  }
+
+  async ngOnInit() {
+    await this.LoginService.loginUser("abana", "rabana")
+      .then(response => this.FlightService.getFlights(response.token))
+      .then(() => this.populatingPlaces())
+      .catch(error => console.log(error))
+  }
+
+  populatingPlaces() {
+    for (let flight of this.FlightService.flights) {
+      this.departureList.push(flight.Departure);
+      this.arriveList.push(flight.Arrival);
+      this.departureDateList.push(formatDate(flight.DepartureDate, 'dd/MM/yyyy', 'en-US'))
+      this.arriveDateList.push(formatDate(flight.ArrivalDate, 'dd/MM/yyyy', 'en-US'))
+    }
+  }
+
 }
