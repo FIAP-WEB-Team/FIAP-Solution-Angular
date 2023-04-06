@@ -10,17 +10,17 @@ import { firstValueFrom } from 'rxjs';
 export class FlightService {
 
     private apiUrl = BASE_URL + 'flights';
-    flights!: any
+    flights!: [FlightData]
+    selectedFlight!: FlightData
 
     constructor(private http: HttpClient) { }
 
-    async getFlights(token: string) {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer '+token).set('Content-Type', 'application/json');
-       const r = (await firstValueFrom<[FlightData]>( this.http.get<[FlightData]>(this.apiUrl, { headers })))
-       this.flights=r
-    
-      
-   
-        
+    setSelectedFlight(flightData: FlightData){
+        this.selectedFlight = flightData
+    }
+
+    getFlights(token: string) {
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        return firstValueFrom(this.http.get<[FlightData]>(this.apiUrl, { headers })).then(response => this.flights = response)
     }
 }

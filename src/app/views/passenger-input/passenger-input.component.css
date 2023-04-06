@@ -12,13 +12,21 @@ mat-form-field {
     font-size: 15px;
 }
 
-.submit-button {
+.submit-button-align {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
+    align-content: stretch;
     justify-content: flex-end;
     padding: 0px 10px;
 }
 
-.mat-raised-button{
-    background-color:red;
-} 
+.submit-button {
+    display: block;
+    background-color: #ff6d0c;
+    color: white;
+    margin-top: 5pt;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}

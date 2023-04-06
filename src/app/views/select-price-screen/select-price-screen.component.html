@@ -1,17 +1,13 @@
-
 <h1>Escolha seu voo:</h1>
 <p>Todas as nossa tarifas incluem taxa de embarque</p>
 <div *ngFor="let flight of flightList;  let i = index">
   <div class="custom-div" (click)="selectedDiv(i)" [ngClass]="{'selected': selectedFlights[i]}">
-    <h2>{{flight.Departure}}    <i class="material-icons">flight_takeoff</i>    {{flight.Arrival}}</h2>
+    <h2>{{flight.Departure}} <i class="material-icons">flight_takeoff</i> {{flight.Arrival}}</h2>
     <h4>{{flight.Price|currency:'BRL'}}</h4>
     <h3>{{flight.DepartureDate}}</h3>
   </div>
 </div>
 <div class="buttonClass">
-<button class="button1" (click)="backPage()">Retornar</button>
-<button class="button2">Avançar</button>
+  <button class="button1" (click)="backPage()">Retornar</button>
+  <button class="button2" (click)="nextPage()">Avançar</button>
 </div>
-
-
-

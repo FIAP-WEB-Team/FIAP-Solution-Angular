@@ -2,16 +2,17 @@
 <form>
     <div class="box-value">
         <h4 class="title-entry">TRECHO</h4>
-        <select [(ngModel)]="selectedFlightType" class="selectClass" name="selectedFlightType" >
+        <select [(ngModel)]="selectedFlightType" class="selectClass" name="selectedFlightType">
             <option *ngFor="let modoVoo of flightType " [value]="modoVoo">
                 {{modoVoo}}
             </option>
         </select>
-        <button class="travel-button"  ><i class="travel-button" class="material-icons" id="flighticon">flight</i></button>
+        <button class="travel-button"><i class="travel-button" class="material-icons"
+                id="flighticon">flight</i></button>
     </div>
     <div class="box-value">
         <h4 class="title-entry">SAINDO DE</h4>
-        <select [(ngModel)]="selectedDeparture" class="selectClass" name="selectedDeparture" >
+        <select [(ngModel)]="selectedDeparture" class="selectClass" name="selectedDeparture">
             <option *ngFor="let modoVoo2 of departureList" [value]="modoVoo2">
                 {{modoVoo2}}
             </option>
@@ -20,16 +21,18 @@
     </div>
     <div class="box-value">
         <h4 class="title-entry">INDO PARA</h4>
-        <select [(ngModel)]="selectedArrive" class="selectClass" name="selectedArrive" [ngClass]="{'combobox-select': true}">
+        <select [(ngModel)]="selectedArrival" class="selectClass" name="selectedArrival"
+            [ngClass]="{'combobox-select': true}">
             <option *ngFor="let modoVoo3 of arriveList" [value]="modoVoo3">
                 {{modoVoo3}}
             </option>
         </select>
         <button class="travel-button"><i class="material-icons" id="iconInvert">flight_land</i></button>
     </div>
-    <div class="box-value" >
+    <div class="box-value">
         <h4 class="title-entry">DATA DE IDA</h4>
-        <select [(ngModel)]="selectedDepartureDate" class="selectClass" name="selectedDepartureDate" [ngClass]="{'combobox-select': true}">
+        <select [(ngModel)]="selectedDepartureDate" class="selectClass" name="selectedDepartureDate"
+            [ngClass]="{'combobox-select': true}">
             <option *ngFor="let modoVoo4 of departureDateList" [value]="modoVoo4">
                 {{modoVoo4}}
             </option>
@@ -38,7 +41,8 @@
     </div>
     <div class="box-value">
         <h4 class="title-entry">DATA DE VOLTA</h4>
-        <select [(ngModel)]="selectedArriveDate" class="selectClass" name="selectedArriveDate"  [ngClass]="{'combobox-select': true}">
+        <select [(ngModel)]="selectedArrivalDate" class="selectClass" name="selectedArrivalDate"
+            [ngClass]="{'combobox-select': true}">
             <option *ngFor="let modoVoo5 of arriveDateList" [value]="modoVoo5">
                 {{modoVoo5}}
             </option>
@@ -47,7 +51,8 @@
     </div>
     <div class="box-value">
         <h4 class="title-entry">PASSAGEIROS</h4>
-        <select [(ngModel)]="selectedPassengersNumber" class="selectClass" name="selectedPassengersNumber" [ngClass]="{'combobox-select': true}">
+        <select [(ngModel)]="selectedPassengersNumber" class="selectClass" name="selectedPassengersNumber"
+            [ngClass]="{'combobox-select': true}">
             <option *ngFor="let modoVoo6 of passengersNumber" [value]="modoVoo6">
                 {{modoVoo6}}
             </option>

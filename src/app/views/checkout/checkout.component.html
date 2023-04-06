@@ -1,0 +1,21 @@
+<div class="success-message">
+    <h2 *ngIf="loadingCheckout; else loadedCheckout">
+        Carregando informações da passagem...
+    </h2>
+    <ng-template #loadedCheckout>
+        <h2 *ngIf="checkoutSuccess; else noPassanger">
+            Passagem de {{passengerInfo.firstName}} comprada com sucesso
+        </h2>
+        <ng-template #noPassanger>
+            <h2>Erro em gerar passagem: tente novamente mais tarde</h2>
+        </ng-template>
+    </ng-template>
+</div>
+<div *ngIf="!checkoutSuccess" class="button-align">
+    <button class="return-button" type="button" (click)="sendInfoToEmail()">Enviar dados da passagem por email</button>
+</div>
+<div class="button-align">
+    <a href="/">
+        <button class="return-button" type="button" [disabled]="loadingCheckout">Retornar ao inicio</button>
+    </a>
+</div>

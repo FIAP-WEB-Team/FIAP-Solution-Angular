@@ -1,7 +1,11 @@
-<h1>GOL</h1>
+<h1 style="margin-left: 10pt;"><b>Giba</b>, você é o passageiro dessa viagem?</h1>
 <div>
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <div class="text-input">
+        <mat-radio-group aria-label="Select an option" formControlName="useLoggedUserData">
+            <mat-radio-button value=true>Sim</mat-radio-button>
+            <mat-radio-button value=false>Não</mat-radio-button>
+        </mat-radio-group>
+        <div class="text-input" style="margin-top: 10pt;">
             <mat-form-field>
                 <mat-label>Primeiro Nome</mat-label>
                 <input matInput #input maxlength="100" type="text" formControlName="firstName" name="firstName" required>
@@ -43,8 +47,8 @@
                 <mat-error>Campo deve ser preenchido</mat-error>
             </mat-form-field>
         </div>
-        <div class="submit-button">
-            <button mat-raised-button color="primary" type="submit">Comprar</button>
+        <div class="submit-button-align">
+            <button class="submit-button" type="submit">Comprar</button>
         </div>
     </form>
 </div>
