@@ -11,9 +11,6 @@
         </ng-template>
     </ng-template>
 </div>
-<div *ngIf="!checkoutSuccess" class="button-align">
-    <button class="return-button" type="button" (click)="sendInfoToEmail()">Enviar dados da passagem por email</button>
-</div>
 <div class="button-align">
     <a href="/">
         <button class="return-button" type="button" [disabled]="loadingCheckout">Retornar ao inicio</button>

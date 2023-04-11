@@ -2,7 +2,7 @@
     <div *ngFor="let navItem of navItems; let i=index;" class="nav-content">
         <div *ngIf="navItem.enabled; else disable">
             <span class="number-circle selected"><span>{{i + 1}}</span></span>
-            <a href="{{navItem.href}}">{{navItem.name}}</a>
+            <a [routerLink]="navItem.href">{{navItem.name}}</a>
         </div>
         <ng-template #disable>
             <span class="number-circle"><span>{{i + 1}}</span></span>

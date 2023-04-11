@@ -22,10 +22,6 @@ export class CheckoutComponent {
     private loginService: LoginService, private flightService: FlightService, private controlService: ControlService) {
   }
 
-  sendInfoToEmail() {
-
-  }
-
   ngOnInit() {
     this.controlService.updateFormPosition(4)
     if (this.loginService.token !== '' && this.passengerInfo && this.selectedFlight) {

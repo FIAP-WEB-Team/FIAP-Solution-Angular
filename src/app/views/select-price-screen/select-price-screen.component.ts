@@ -60,7 +60,6 @@ export class SelectPriceScreenComponent {
     if (this.selectedFlightIndex == -1)
       alert("Selecione um voo para continuar")
     else {
-      console.log(this.FlightService.flights)
       this.FlightService.selectedFlight = this.FlightService.flights[this.selectedFlightIndex]
       this.routers.navigate(['/passenger'])
     }

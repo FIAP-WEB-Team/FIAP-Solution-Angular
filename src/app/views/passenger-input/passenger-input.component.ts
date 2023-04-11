@@ -60,6 +60,10 @@ export class PassengerInputComponent {
     }
   }
 
+  previousPage() {
+    this.router.navigate(['/flights'])
+  }
+
   onSubmit() {
     if (!this.validateForm())
       window.alert(`Há campos inválidos`)

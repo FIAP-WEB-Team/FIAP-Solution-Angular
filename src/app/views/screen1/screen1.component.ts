@@ -58,6 +58,8 @@ export class Screen1Component {
         .then(response => this.FlightService.getFlights(response.token))
         .then(() => this.populatingPlaces())
         .catch(error => console.log(error))
+    else
+      this.populatingPlaces()
   }
 
   populatingPlaces() {
