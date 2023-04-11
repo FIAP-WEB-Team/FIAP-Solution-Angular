@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlightData } from 'src/app/data/FlightData';
+import { ControlService } from 'src/app/services/control.service';
 import { FlightService } from 'src/app/services/flight.service';
 
 
@@ -27,11 +28,13 @@ export class SelectPriceScreenComponent {
     }
   }
 
-  constructor(private routers: Router, private FlightService: FlightService) {
+  constructor(private routers: Router, private FlightService: FlightService, private controlService: ControlService) {
   }
 
   ngOnInit() {
-    this.populateFlightList()
+    this.controlService.updateFormPosition(2)
+    if (this.FlightService.flights)
+      this.populateFlightList()
   }
 
   populateFlightList() {

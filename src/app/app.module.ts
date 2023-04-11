@@ -32,12 +32,9 @@ import { PassengerInputComponent } from './views/passenger-input/passenger-input
     HeaderComponent,
     FollowlineComponent,
     Screen1Component,
-
     SelectPriceScreenComponent,
-
     PassengerInputComponent,
     CheckoutComponent,
-
   ],
   imports: [
     BrowserModule,

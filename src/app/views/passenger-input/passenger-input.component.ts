@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DUMMY_PASSANGER, PassengerData } from '../../data/PassengerData';
 import { PassengerService } from '../../services/passenger.service';
-import { LoginService } from '../../services/login.service';
+import { ControlService } from 'src/app/services/control.service';
 
 @Component({
   selector: 'app-passenger-input',
@@ -22,13 +22,17 @@ export class PassengerInputComponent {
     gender: ''
   })
 
-  constructor(private formBuilder: FormBuilder, private passengerService: PassengerService, private loginService: LoginService,
-    private router: Router) {
+  constructor(private formBuilder: FormBuilder, private passengerService: PassengerService,
+    private router: Router, private controlService: ControlService) {
     this.checkUseLoggedUserData(this.checkoutForm.value.useLoggedUserData === "true")
     this.checkoutForm.get("useLoggedUserData")!.valueChanges.subscribe(useLoggedUserData => {
       if (useLoggedUserData !== this.checkoutForm.value.useLoggedUserData)
         this.checkUseLoggedUserData(useLoggedUserData === "true")
     })
+  }
+
+  ngOnInit() {
+    this.controlService.updateFormPosition(3)
   }
 
   validateForm() {

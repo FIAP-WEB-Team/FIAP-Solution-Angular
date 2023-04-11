@@ -1,13 +1,18 @@
 <h1>Escolha seu voo:</h1>
 <p>Todas as nossa tarifas incluem taxa de embarque</p>
-<div *ngFor="let flight of flightList;  let i = index">
-  <div class="custom-div" (click)="selectedDiv(i)" [ngClass]="{'selected': selectedFlights[i]}">
-    <h2>{{flight.Departure}} <i class="material-icons">flight_takeoff</i> {{flight.Arrival}}</h2>
-    <h4>{{flight.Price|currency:'BRL'}}</h4>
-    <h3>{{flight.DepartureDate}}</h3>
+<div *ngIf="flightList.length != 0; else noFlight">
+  <div *ngFor="let flight of flightList;  let i = index">
+    <div class="custom-div" (click)="selectedDiv(i)" [ngClass]="{'selected': selectedFlights[i]}">
+      <h2>{{flight.Departure}} <i class="material-icons">flight_takeoff</i> {{flight.Arrival}}</h2>
+      <h4>{{flight.Price|currency:'BRL'}}</h4>
+      <h3>{{flight.DepartureDate}}</h3>
+    </div>
   </div>
 </div>
+<ng-template #noFlight>
+  <h2 style="margin-top: 20pt; margin-bottom: 20pt;">Nenhum voo disponível</h2>
+</ng-template>
 <div class="buttonClass">
   <button class="button1" (click)="backPage()">Retornar</button>
-  <button class="button2" (click)="nextPage()">Avançar</button>
+  <button class="button2" (click)="nextPage()" [disabled]="selectedFlightIndex == -1">Avançar</button>
 </div>

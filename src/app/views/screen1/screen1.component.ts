@@ -3,6 +3,7 @@ import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlightData } from 'src/app/data/FlightData';
+import { ControlService } from 'src/app/services/control.service';
 
 import { FlightService } from 'src/app/services/flight.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -31,16 +32,12 @@ export class Screen1Component {
   selectedPassengersNumber: string = '';
 
 
-  constructor(
-    public router: Router,
-    private FlightService: FlightService,
-    private LoginService: LoginService,
-  ) { }
+  constructor(public router: Router, private FlightService: FlightService, private LoginService: LoginService, private controlService: ControlService) {
+  }
 
   validate() {
-    // return this.selectedArrival !== ' ' && this.selectedArrivalDate !== ' ' && this.selectedDeparture !== ' ' && this.selectedDepartureDate != '' &&
-    //   this.selectedFlightType != '' && this.selectedPassengersNumber != ''
-    return true
+    return this.selectedArrival !== ' ' && this.selectedArrivalDate !== ' ' && this.selectedDeparture !== ' ' && this.selectedDepartureDate != '' &&
+      this.selectedFlightType != '' && this.selectedPassengersNumber != ''
   }
 
   submit() {
@@ -55,10 +52,12 @@ export class Screen1Component {
   }
 
   async ngOnInit() {
-    await this.LoginService.loginUser("abana", "rabana")
-      .then(response => this.FlightService.getFlights(response.token))
-      .then(() => this.populatingPlaces())
-      .catch(error => console.log(error))
+    this.controlService.updateFormPosition(1)
+    if (!this.LoginService.token)
+      await this.LoginService.loginUser("abana", "rabana")
+        .then(response => this.FlightService.getFlights(response.token))
+        .then(() => this.populatingPlaces())
+        .catch(error => console.log(error))
   }
 
   populatingPlaces() {
