@@ -11,8 +11,40 @@
         </ng-template>
     </ng-template>
 </div>
+<div *ngIf="checkoutSuccess">
+    <form [formGroup]="emailForm" (ngSubmit)="sendEmail()" *ngIf="canSendEmail; else cannotSendEmail">
+        <h2 class="success-message">
+            Enviar informações da passagem por email
+        </h2>
+        <div class="text-input" style="margin-top: 10pt;">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput #input maxlength="200" type="text" formControlName="email" name="email" required>
+                <mat-error>Campo deve ser preenchido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="button-align">
+            <button class="basic-button" type="submit">Enviar email</button>
+        </div>
+    </form>
+    <ng-template #cannotSendEmail>
+        <h2 class="success-message" *ngIf="!emailRequestReceived; else requestReceived">
+            Enviando passagem por email...
+        </h2>
+        <ng-template #requestReceived>
+            <h2 class="success-message" *ngIf="!succesfullySentEmail; else emailSuccess">
+                Não foi possível enviar email. Você poderá acessar as informações da passagem mais tarde na sua conta GOL.
+            </h2>
+            <ng-template #emailSuccess>
+                <h2 class="success-message">
+                    Email enviado com sucesso
+                </h2>
+            </ng-template>
+        </ng-template>
+    </ng-template>
+</div>
 <div class="button-align">
     <a href="/">
-        <button class="return-button" type="button" [disabled]="loadingCheckout">Retornar ao inicio</button>
+        <button class="basic-button" type="button" [disabled]="loadingCheckout">Retornar ao inicio</button>
     </a>
 </div>
