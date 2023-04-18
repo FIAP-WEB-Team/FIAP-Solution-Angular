@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://localhost:8080/'
+export const BASE_URL = 'http://fiap-backend.g5hgaccrgva2hbbj.brazilsouth.azurecontainer.io:8080/'
