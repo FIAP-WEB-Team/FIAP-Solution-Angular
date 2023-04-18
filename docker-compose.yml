@@ -1,0 +1,24 @@
+version: "1.0"
+services: 
+
+  backend: 
+    image: alysoneiti/fiap-solution-backend:2.2 
+    container_name: backend-app 
+    ports:
+      - '8080:8080' 
+    networks: 
+      - compose-bridge 
+
+  angular: 
+    image: alysoneiti/fiap-solution-angular:2.5 
+    container_name: solution-angular 
+    ports: 
+      - '4200:80' 
+    networks:
+      - compose-bridge 
+    depends_on:
+      - backend  
+
+networks:
+  compose-bridge: 
+    driver: bridge 
